@@ -1,5 +1,6 @@
 <script setup>
-import profilImage from '@/assets/images/profil.png'
+import profilImage from '@/assets/images/portf1.png'
+import SocialIcon from './SocialIcon.vue';
 // Vous pouvez ajouter des variables réactives ici si nécessaire
 const notedWith = [
   { name: 'ClickUp', checked: false },
@@ -25,11 +26,24 @@ const notedWith = [
     <!-- Main Content -->
     <div class="home">
       <div class="text-content">
-        <h1>Kelly ALphador</h1>
+       
         <p class="intro-text">
-            Developpeur Backend .NET
+            <h2 class="text-highlight-1 section-title">Qui suis-je ?</h2>
+            <p class="default-text">
+                Je suis <span class="text-highlight-2">Kelly Alphador</span>, 
+                <span class="text-highlight-2">développeur .NET</span> passionné, spécialisé dans le 
+                <span class="text-highlight-2">Back-End .NET Core</span>. <br/>
+                J'aime créer des applications robustes, performantes et évolutives, en utilisant 
+                <span class="text-highlight-2">C#</span> et le framework <span class="text-highlight-2">ASP.NET Core</span>. <br/>
+                Mon objectif ? Créer des solutions innovantes, fiables et adaptées aux besoins des utilisateurs.
+            </p>
         </p>
         <button class="cta-button">Telecharger CV</button>
+              <div id="social">
+                <SocialIcon img="linkedin" alt="youtube" link="https://www.youtube.com/@F0rmati0nFacile" />
+                <SocialIcon img="message" alt="linkedin" link="https://www.linkedin.com/in/anthony-cardinale-%F0%9F%91%A8%F0%9F%8F%BB%E2%80%8D%F0%9F%92%BB-39474243/" />
+                <SocialIcon img="twitter" alt="udemy" link="https://www.udemy.com/user/cardinale-anthony/" />
+              </div>
       </div>
       <div class="image-content">
         <!-- Placeholder pour une image -->
@@ -42,20 +56,7 @@ const notedWith = [
     </div>
 
     <!-- Noted With Section -->
-    <div class="noted-with">
-      <h3>Noted with</h3>
-      <div class="checkbox-list">
-        <label v-for="(item, index) in notedWith" :key="index" class="checkbox-item">
-          <input type="checkbox" :checked="item.checked" disabled>
-          <span>{{ item.name }}</span>
-        </label>
-      </div>
-    </div>
-
-    <!-- Contact Me Section -->
-    <div class="contact-me">
-      <!-- Vous pouvez ajouter un formulaire de contact ici plus tard -->
-    </div>
+    
   </div>
 </template>
 
@@ -78,9 +79,13 @@ const notedWith = [
 .gradient-frame {
   padding: 12px;
   border-radius: 50%;
-  background: radial-gradient(circle at top center, #6e4fb700 0%, #180f2f 100%);
-  box-shadow: -1px -7px 16px 19px rgb(124 97 203 / 44%);
+  background: #81aaff;
+  /*box-shadow: -1px -7px 16px 19px rgb(124 97 203 / 44%);*/
   display: inline-block;
+  transition: box-shadow 0.6s;
+}
+.gradient-frame:hover{
+  box-shadow: -1px -7px 16px 19px rgb(124 97 203 / 44%);
 }
 
 .nav-item {
@@ -101,7 +106,7 @@ const notedWith = [
 
 .home {
   display: flex;
-  gap: 90px;
+  gap: 60px;
   align-items: center;
   margin-bottom: 60px;
 }
@@ -125,6 +130,10 @@ const notedWith = [
   border: none;
   margin-left: 20px;
 }
+#social
+ {
+  margin-top: 15px;
+}
 
 h1 {
   font-size: 2.5rem;
@@ -141,19 +150,22 @@ h1 {
 }
 
 .cta-button {
-  background-color: #646cff;
+  margin-top: 15px;
+  background-color: #81aaff;
   color: white;
   border: none;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: box-shadow 0.6s;
 }
 
 .cta-button:hover {
-  background-color: #535bf2;
+  /* background-color: #535bf2; */
+  box-shadow: 1px 1px 19px 8px rgb(124 97 203 / 44%);
 }
+
 
 .noted-with {
   margin-top: 40px;
@@ -212,4 +224,31 @@ h1 {
     max-width: 100%;
   }
 }
+/* Pour ton titre */
+.text-highlight-1 {
+    color: White; /* une couleur violette ou celle que tu veux pour le titre */
+    font-weight: bold;
+}
+
+/* Pour tes textes "highlightés" dans le paragraphe */
+.text-highlight-2 {
+    color:#81aaff; /* exemple orange, tu peux choisir une autre couleur */
+    font-weight: 600;
+}
+
+/* Style général du paragraphe */
+.default-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: white;
+}
+
+/* Titre de section */
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 </style>
