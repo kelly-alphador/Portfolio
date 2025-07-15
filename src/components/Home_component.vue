@@ -2,13 +2,7 @@
 import profilImage from '@/assets/images/portf1.png'
 import SocialIcon from './SocialIcon.vue';
 // Vous pouvez ajouter des variables réactives ici si nécessaire
-const notedWith = [
-  { name: 'ClickUp', checked: false },
-  { name: 'Dropbox', checked: true },
-  { name: 'PAYCHEX', checked: false },
-  { name: 'elastic', checked: false },
-  { name: 'stripe', checked: false }
-]
+
 </script>
 
 <template>
@@ -27,7 +21,7 @@ const notedWith = [
     <div class="home">
       <div class="text-content">
        
-        <p class="intro-text">
+        <div class="intro-text">
             <h2 class="text-highlight-1 section-title">Qui suis-je ?</h2>
             <p class="default-text">
                 Je suis <span class="text-highlight-2">Kelly Alphador</span>, 
@@ -37,7 +31,7 @@ const notedWith = [
                 <span class="text-highlight-2">C#</span> et le framework <span class="text-highlight-2">ASP.NET Core</span>. <br/>
                 Mon objectif ? Créer des solutions innovantes, fiables et adaptées aux besoins des utilisateurs.
             </p>
-        </p>
+        </div>
         <button class="cta-button">Telecharger CV</button>
               <div id="social">
                 <SocialIcon img="linkedin" alt="youtube" link="https://www.youtube.com/@F0rmati0nFacile" />
