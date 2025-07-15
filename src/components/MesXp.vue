@@ -5,18 +5,18 @@
 
     let experiences = ref([
     {
-        title: "Développeur Web",
-        date: "Depuis 2020",
-        line1: "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
-        line2: "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
-        line3: "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet."
+        title: "Développeur ASP.NET MVC",
+        date: "Août 2024 - Nov 2024",
+        line1: "Conception et realisation d'une plateforme de vente des produits TAMAOIL",
+        line2: "Cette Application permet d’Offrir une expérience d’achat fluide aux clients et des outils de gestion performants aux administrateurs",
+        line3: "Technologies : ASP.NET MVC (.NET Framework), Entity Framework (Database First), Identity, Razor Pages, jQuery, Bootstrap, intégration PayPal, SQL Server."
     },
     {
-        title: "Développeur Unity",
-        date: "2010 - 2020",
-        line1: "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
+        title: "Développeur FullStack Vue.js & Symfony",
+        date: "Août 2023 - Nov 2023",
+        line1: "Stage chez WBS — Projet pour l’entreprise AINA Projet : Application de gestion de devis",
         line2: "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
-        line3: "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet."
+        line3: "Stack technique :Frontend : Vue.js (composition API, Vue Router, Axios, UI moderne) Backend : Symfony (API RESTful, Doctrine ORM, sécurité, validation) Base de données : MySQL."
     },
     {
         title: "Développeur Web",
@@ -34,12 +34,12 @@
 </script>
 
 <template>
-    <div id="xp">
+     <section id="xp" class="section">
+    
         <h2 class="text-highlight-1 section-title">Expériences</h2>
         <div id="left">
-            <p :class="activeBloc === 0 ? 'active' : ''" class="company fw600" @click="ShowXp(0)">Société n°1</p>
-            <p :class="activeBloc === 1 ? 'active' : ''" class="company fw600" @click="ShowXp(1)">Société n°2</p>
-            <p :class="activeBloc === 2 ? 'active' : ''" class="company fw600" @click="ShowXp(2)">Société n°3</p>
+            <p :class="activeBloc === 0 ? 'active' : ''" class="company fw600" @click="ShowXp(0)">Spray Info</p>
+            <p :class="activeBloc === 1 ? 'active' : ''" class="company fw600" @click="ShowXp(1)">WBS</p>
         </div>
         <div id="right">
             <template v-for="(job,index) in experiences">
@@ -53,7 +53,7 @@
                 </div>
             </template>
         </div>
-    </div>
+    </section>
 </template>
 
 <style scoped>
@@ -61,19 +61,6 @@
         margin-top: 60px;
         padding: 20px;
     }
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-right: 30px;
-    }
-
-    .text-highlight-1 {
-        color: White;
-        font-weight: bold;
-    }
-
     #xp #left {
         float: left;
         width: 25%;

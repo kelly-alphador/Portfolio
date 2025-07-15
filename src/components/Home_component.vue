@@ -1,6 +1,25 @@
 <script setup>
 import profilImage from '@/assets/images/portf1.png'
 import SocialIcon from './SocialIcon.vue';
+import { onMounted, onUnmounted } from 'vue'
+
+onMounted(() => {
+  const handleScroll = () => {
+    const nav = document.querySelector('.navigation')
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled')
+    } else {
+      nav.classList.remove('scrolled')
+    }
+  }
+  
+  window.addEventListener('scroll', handleScroll)
+  
+  onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll)
+  })
+})
+
 // Vous pouvez ajouter des variables réactives ici si nécessaire
 
 </script>
@@ -8,14 +27,16 @@ import SocialIcon from './SocialIcon.vue';
 <template>
   <div class="portfolio-container">
     <!-- Navigation -->
-    <nav class="navigation">
-      <a href="#" class="nav-item">Home</a>
-      <a href="#" class="nav-item">Competences</a>
-      <a href="#" class="nav-item">Project</a>
-      <a href="#" class="nav-item">Experience</a>
-      <a href="#" class="nav-item">Contact</a>
-      <span class="language-switcher">in B6</span>
-    </nav>
+      <nav class="navigation">
+        <a href="#" class="nav-item nav-brand">Kelly-Alphador</a>
+        <div class="nav-right">
+            <a href="#" class="nav-item">Home</a>
+            <a href="#skills" class="nav-item">Competences</a>
+            <a href="#projects" class="nav-item">Project</a>
+            <a href="#xp" class="nav-item">Experience</a>
+            <a href="#" class="nav-item">Contact</a>
+        </div>
+      </nav>
 
     <!-- Main Content -->
     <div class="home">
@@ -55,20 +76,51 @@ import SocialIcon from './SocialIcon.vue';
 </template>
 
 <style scoped>
-.portfolio-container {
-  max-width: none;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Inter', sans-serif;
+.navigation {
+    display: flex;
+    justify-content: space-between; /* Espace entre les éléments */
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eaeaea;
+    border: 1px white solid;
+    padding: 10px 40px 10px 40px;
+    background: rgba(129, 170, 255, 0.9); /* Transparence ajoutée */
+    border: none;
+    position: fixed; /* Position fixe */
+    top: 0; /* Collé en haut */
+    left: 0; /* Aligné à gauche */
+    right: 0; /* Aligné à droite */
+    z-index: 1000; /* Au-dessus des autres éléments */
+    backdrop-filter: blur(10px); /* Effet de flou en arrière-plan */
+    -webkit-backdrop-filter: blur(10px); /* Compatibilité Safari */
+    transition: all 0.3s ease; /* Transition douce */
 }
 
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #eaeaea;
+/* Conteneur pour les liens de navigation à droite */
+.nav-right {
+    display: flex;
+    gap: 20px;
+}
+
+/* Style spécial pour le nom (à gauche) */
+.nav-brand {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Ajustement du conteneur principal pour compenser la nav fixe */
+.portfolio-container {
+    max-width: none;
+    margin: 0 auto;
+    padding: 80px 20px 20px 20px; /* Padding-top augmenté pour compenser la nav fixe */
+    font-family: 'Inter', sans-serif;
+}
+
+/* Style pour quand la navigation est scrollée (optionnel) */
+.navigation.scrolled {
+    background: rgba(129, 170, 255, 0.95);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 .gradient-frame {
   padding: 12px;
@@ -103,6 +155,7 @@ import SocialIcon from './SocialIcon.vue';
   gap: 60px;
   align-items: center;
   margin-bottom: 60px;
+  padding: 20px;
 }
 
 .text-content {

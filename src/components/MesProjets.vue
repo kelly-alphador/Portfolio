@@ -4,37 +4,37 @@
 
     let projects = ref([
     {
-        name: "Le projet N°1",
-        image: "projet.png",
-        tags: "VueJS;PHP;HTML",
+        name: "Ecommerce",
+        image: "tableau_bord.png;quantite.png;avis.png",
+        tags: "ASPNET.MVC;Jquery;HTML",
         description: "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
         tasks: "Lorem ipsum lorem ipsum dolor sit amet.;Lorem ipsum lorem ipsum dolor sit amet.;Lorem ipsum lorem ipsum dolor sit amet."
     },
     {
-        name: "Le projet N°2",
-        image: "projet.png",
-        tags: "VueJS;PHP;HTML",
+        name: "Service Image",
+        image: "End1.png;Ajout_img.png;database.png;modification.png;Register.png",
+        tags: ".NET Core; C#",
         description: "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
         tasks: "Lorem ipsum lorem ipsum dolor sit amet.;Lorem ipsum lorem ipsum dolor sit amet.;Lorem ipsum lorem ipsum dolor sit amet."
     },
     {
-        name: "Le projet N°3",
-        image: "projet.png",
-        tags: "VueJS;PHP;HTML",
+        name: "TaskMAster",
+        image: "End2.png;todo.png;dt2.png",
+        tags: ".NET Core;Vuejs;HTML;CSS",
         description: "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
         tasks: "Lorem ipsum lorem ipsum dolor sit amet.;Lorem ipsum lorem ipsum dolor sit amet.;Lorem ipsum lorem ipsum dolor sit amet."
     },
     {
-        name: "Le projet N°4",
+        name: "ArtistoSocial",
         image: "projet.png",
-        tags: "VueJS;PHP;HTML",
+        tags: ".Net Core; C#",
         description: "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
         tasks: "Lorem ipsum lorem ipsum dolor sit amet.;Lorem ipsum lorem ipsum dolor sit amet.;Lorem ipsum lorem ipsum dolor sit amet."
     },
     {
-        name: "Le projet N°5",
+        name: "Algorithme de DANTZIG",
         image: "projet.png",
-        tags: "VueJS;PHP;HTML",
+        tags: "WPF",
         description: "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.",
         tasks: "Lorem ipsum lorem ipsum dolor sit amet.;Lorem ipsum lorem ipsum dolor sit amet.;Lorem ipsum lorem ipsum dolor sit amet."
     },
@@ -50,15 +50,17 @@
 </script>
 
 <template>
-    <div id="projects">
+    <section id="projects" class="section">
+  
         <h2 class="text-highlight-1 section-title">Quelques projets</h2>
         <ProjectSingle v-for="(project, index) in projects" :key="project.name" :project="project" :reverse="index % 2 === 0 ? false : true" />
-    </div>
+    </section>
 </template>
 
 <style scoped>
     #projects {
         display: inline-block;
         margin-top: 60px;
+        padding: 20px;
     }
 </style>

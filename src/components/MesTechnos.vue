@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div id="skills">
+    <section id="skills" class="section">
         <h2 class="text-highlight-1 section-title">Mes technos préférées</h2>
         
         <div class="carousel-container">
@@ -46,7 +46,7 @@
                 
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <style scoped>
@@ -54,19 +54,6 @@
         margin-top: 60px;
         padding: 15px;
     }
-
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .text-highlight-1 {
-        color: White;
-        font-weight: bold;
-    }
-
     .carousel-container {
         overflow: hidden;
         margin-top: 35px;
