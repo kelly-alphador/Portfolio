@@ -36,12 +36,24 @@
 <template>
      <section id="xp" class="section">
     
-        <h2 class="text-highlight-1 section-title">Expériences</h2>
-        <div id="left">
+        <h2 class="text-highlight-1 section-title"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="300"
+        >Expériences</h2>
+        <div id="left" 
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="300"
+        >
             <p :class="activeBloc === 0 ? 'active' : ''" class="company fw600" @click="ShowXp(0)">Spray Info</p>
             <p :class="activeBloc === 1 ? 'active' : ''" class="company fw600" @click="ShowXp(1)">WBS</p>
         </div>
-        <div id="right">
+        <div id="right"
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-delay="300"
+        >
             <template v-for="(job,index) in experiences">
                 <div class="job-details" :class="index === activeBloc ? '' : 'hide'" :id="'bloc_'+index">
                     <h3 class="fw600">{{ job.title }}</h3>

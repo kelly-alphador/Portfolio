@@ -28,8 +28,16 @@ onMounted(() => {
   <div class="portfolio-container">
     <!-- Navigation -->
       <nav class="navigation">
-        <a href="#" class="nav-item nav-brand">Kelly-Alphador</a>
-        <div class="nav-right">
+        <a href="#" class="nav-item nav-brand" 
+          data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="0"
+        >Kelly-Alphador</a>
+        <div class="nav-right"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="0"
+        >
             <a href="#" class="nav-item">Home</a>
             <a href="#skills" class="nav-item">Competences</a>
             <a href="#projects" class="nav-item">Project</a>
@@ -43,8 +51,15 @@ onMounted(() => {
       <div class="text-content">
        
         <div class="intro-text">
-            <h2 class="text-highlight-1 section-title">Qui suis-je ?</h2>
-            <p class="default-text">
+            <h2 class="text-highlight-1 section-title"  
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="0">Qui suis-je ?</h2>
+            <p class="default-text"
+                 data-aos="fade-right"
+                data-aos-duration="1000"
+                data-aos-delay="300"
+            >
                 Je suis <span class="text-highlight-2">Kelly Alphador</span>, 
                 <span class="text-highlight-2">développeur .NET</span> passionné, spécialisé dans le 
                 <span class="text-highlight-2">Back-End .NET Core</span>. <br/>
@@ -53,19 +68,32 @@ onMounted(() => {
                 Mon objectif ? Créer des solutions innovantes, fiables et adaptées aux besoins des utilisateurs.
             </p>
         </div>
-        <button class="cta-button">Telecharger CV</button>
-              <div id="social">
+        <button class="cta-button"
+            data-aos="fade-right"
+        data-aos-duration="1000"
+        data-aos-delay="600"
+        >Telecharger CV</button>
+              <div id="social"
+                  data-aos="fade-right"
+                  data-aos-duration="1000"
+                  data-aos-delay="900"
+              >
                 <SocialIcon img="linkedin" alt="youtube" link="https://www.youtube.com/@F0rmati0nFacile" />
                 <SocialIcon img="message" alt="linkedin" link="https://www.linkedin.com/in/anthony-cardinale-%F0%9F%91%A8%F0%9F%8F%BB%E2%80%8D%F0%9F%92%BB-39474243/" />
                 <SocialIcon img="twitter" alt="udemy" link="https://www.udemy.com/user/cardinale-anthony/" />
+                <SocialIcon img="gi" alt="git" link="https://github.com/kelly-alphador" />
+                <SocialIcon img="facebook" alt="udemy" link="https://www.udemy.com/user/cardinale-anthony/" />
               </div>
       </div>
       <div class="image-content">
         <!-- Placeholder pour une image -->
-        <div class="placeholder-image">
-            <div class="gradient-frame">
-                <img :src="profilImage" alt="Photo de profil" style="width: 300px;height: 300px;"/>
-            </div>
+          <div class="placeholder-image"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="600">
+          <div class="gradient-frame">
+            <img :src="profilImage" alt="Photo de profil" style="width: 300px; height: 300px;" />
+          </div>
         </div>
       </div>
     </div>

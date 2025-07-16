@@ -52,7 +52,11 @@
 <template>
     <section id="projects" class="section">
   
-        <h2 class="text-highlight-1 section-title">Quelques projets</h2>
+        <h2 class="text-highlight-1 section-title"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="300"
+        >Quelques projets</h2>
         <ProjectSingle v-for="(project, index) in projects" :key="project.name" :project="project" :reverse="index % 2 === 0 ? false : true" />
     </section>
 </template>

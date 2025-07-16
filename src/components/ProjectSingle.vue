@@ -1,164 +1,130 @@
 <script setup>
-    import { ref, onMounted, onUnmounted } from "vue";
-         
-    const props = defineProps({
-        project: {
-            type: Object,
-            required: true
-        },
-        reverse: {
-            type: Boolean,
-            required: false
-        }
-    })
+import { ref, onMounted, onUnmounted } from "vue";
 
-    let fadeInElements = ref();
-    let currentImageIndex = ref(0);
-    let carouselInterval = ref(null);
+const props = defineProps({
+  project: {
+    type: Object,
+    required: true
+  },
+  reverse: {
+    type: Boolean,
+    required: false
+  }
+})
 
-    onMounted(() => {
-        fadeInElements.value = Array.from(document.getElementsByClassName('fade-in'))
-        document.addEventListener('scroll', handleScroll)
-        
-        // Démarrer le carousel automatique
-        startCarousel();
-    })
+let currentImageIndex = ref(0);
+let carouselInterval = ref(null);
 
-    onUnmounted(() => {
-        document.removeEventListener('scroll', handleScroll)
-        
-        // Arrêter le carousel automatique
-        if (carouselInterval.value) {
-            clearInterval(carouselInterval.value);
-        }
-    })
+onMounted(() => {
+  startCarousel();
+})
 
-    const handleScroll = () => {
-        for (let i = 0; i < fadeInElements.value.length; i++) {
-            const elem = fadeInElements.value[i]
-            if (isElemVisible(elem)) {
-                elem.style.opacity = '1'
-                elem.style.transform = 'scale(1)'
-                fadeInElements.value.splice(i, 1) // Anim 1 fois
-            }
-        }
-    }
+onUnmounted(() => {
+  if (carouselInterval.value) {
+    clearInterval(carouselInterval.value);
+  }
+})
 
-    const isElemVisible = (el) => {
-        const rect = el.getBoundingClientRect()
-        const elemTop = rect.top + 200
-        const elemBottom = rect.bottom
-        return elemTop < window.innerHeight && elemBottom >= 0
-    }
+const getProjectTags = () => props.project.tags.split(';');
+const getProjectTasks = () => props.project.tasks.split(';');
+const getProjectImages = () => {
+  return Array.isArray(props.project.image)
+    ? props.project.image
+    : props.project.image.split(';');
+};
 
-    const getProjectTags = () => {
-        return props.project.tags.split(';');
-    }
+const nextImage = () => {
+  const images = getProjectImages();
+  if (images.length > 1) {
+    currentImageIndex.value = (currentImageIndex.value + 1) % images.length;
+  }
+}
 
-    const getProjectTasks = () => {
-        return props.project.tasks.split(';');
-    }
+const prevImage = () => {
+  const images = getProjectImages();
+  if (images.length > 1) {
+    currentImageIndex.value = currentImageIndex.value === 0
+      ? images.length - 1
+      : currentImageIndex.value - 1;
+  }
+}
 
-    const getProjectImages = () => {
-        if (Array.isArray(props.project.image)) {
-            return props.project.image;
-        }
-        return props.project.image.split(';');
-    }
+const goToImage = (index) => {
+  const images = getProjectImages();
+  if (index >= 0 && index < images.length) {
+    currentImageIndex.value = index;
+  }
+}
 
-    const nextImage = () => {
-        const images = getProjectImages();
-        if (images.length > 1) {
-            currentImageIndex.value = (currentImageIndex.value + 1) % images.length;
-        }
-    }
+const startCarousel = () => {
+  const images = getProjectImages();
+  if (images.length > 1) {
+    carouselInterval.value = setInterval(nextImage, 4000);
+  }
+}
 
-    const prevImage = () => {
-        const images = getProjectImages();
-        if (images.length > 1) {
-            currentImageIndex.value = currentImageIndex.value === 0 ? images.length - 1 : currentImageIndex.value - 1;
-        }
-    }
+const stopCarousel = () => {
+  if (carouselInterval.value) {
+    clearInterval(carouselInterval.value);
+    carouselInterval.value = null;
+  }
+}
 
-    const goToImage = (index) => {
-        const images = getProjectImages();
-        if (index >= 0 && index < images.length) {
-            currentImageIndex.value = index;
-        }
-    }
-
-    const startCarousel = () => {
-        const images = getProjectImages();
-        if (images.length > 1) {
-            carouselInterval.value = setInterval(() => {
-                nextImage();
-            }, 4000); // Change d'image toutes les 4 secondes
-        }
-    }
-
-    const stopCarousel = () => {
-        if (carouselInterval.value) {
-            clearInterval(carouselInterval.value);
-            carouselInterval.value = null;
-        }
-    }
-
-    const resumeCarousel = () => {
-        if (!carouselInterval.value) {
-            startCarousel();
-        }
-    }
+const resumeCarousel = () => {
+  if (!carouselInterval.value) {
+    startCarousel();
+  }
+}
 </script>
 
 <template>
-    <div class="project">
-        <div class="left fade-in" :class="reverse ? 'reverse' : ''">
-            <h3 class="text-highlight-1">{{ project.name }}</h3>
-            
-            <div class="carousel-container" @mouseenter="stopCarousel" @mouseleave="resumeCarousel">
-                <div class="carousel">
-                    <div class="carousel-track">
-                        <div class="carousel-images" :style="{ transform: `translateX(-${currentImageIndex * 100}%)` }">
-                            <div v-for="(image, index) in getProjectImages()" :key="index" class="carousel-image">
-                                <a :href="`/src/assets/${image}`" target="_blank">
-                                    <img :src="`/src/assets/${image}`" :alt="`${project.name} - Image ${index + 1}`">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Boutons de navigation -->
-                    <button v-if="getProjectImages().length > 1" @click="prevImage" class="carousel-btn carousel-btn-prev">
-                        &#8249;
-                    </button>
-                    <button v-if="getProjectImages().length > 1" @click="nextImage" class="carousel-btn carousel-btn-next">
-                        &#8250;
-                    </button>
-                    
-                    <!-- Indicateurs -->
-                    <div v-if="getProjectImages().length > 1" class="carousel-indicators">
-                        <button 
-                            v-for="(image, index) in getProjectImages()" 
-                            :key="index"
-                            @click="goToImage(index)"
-                            :class="['indicator', { active: index === currentImageIndex }]"
-                        ></button>
-                    </div>
-                </div>
+  <div class="project">
+    <!-- Left section avec AOS -->
+    <div class="left" :class="reverse ? 'reverse' : ''" data-aos="zoom-in" data-aos-duration="1000">
+      <h3 class="text-highlight-1">{{ project.name }}</h3>
+
+      <div class="carousel-container" @mouseenter="stopCarousel" @mouseleave="resumeCarousel">
+        <div class="carousel">
+          <div class="carousel-track">
+            <div class="carousel-images" :style="{ transform: `translateX(-${currentImageIndex * 100}%)` }">
+              <div v-for="(image, index) in getProjectImages()" :key="index" class="carousel-image">
+                <a :href="`/src/assets/${image}`" target="_blank">
+                  <img :src="`/src/assets/${image}`" :alt="`${project.name} - Image ${index + 1}`">
+                </a>
+              </div>
             </div>
+          </div>
+
+          <!-- Boutons -->
+          <button v-if="getProjectImages().length > 1" @click="prevImage" class="carousel-btn carousel-btn-prev">&#8249;</button>
+          <button v-if="getProjectImages().length > 1" @click="nextImage" class="carousel-btn carousel-btn-next">&#8250;</button>
+
+          <!-- Indicateurs -->
+          <div v-if="getProjectImages().length > 1" class="carousel-indicators">
+            <button 
+              v-for="(image, index) in getProjectImages()" 
+              :key="index"
+              @click="goToImage(index)"
+              :class="['indicator', { active: index === currentImageIndex }]"
+            ></button>
+          </div>
         </div>
-                 
-        <div class="right fade-in">
-            <p class="tag" v-for="tag in getProjectTags()">{{ tag }}</p>
-            <p class="description">
-                {{ project.description }}
-            </p>
-            <p class="tasks">
-                <span v-for="task in getProjectTasks()"><span class="text-highlight-2">✓</span> {{ task }}<br/></span>
-            </p>
-        </div>
+      </div>
     </div>
+
+    <!-- Right section avec AOS aussi -->
+    <div class="right" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300">
+      <p class="tag" v-for="tag in getProjectTags()" :key="tag">{{ tag }}</p>
+      <p class="description">{{ project.description }}</p>
+      <p class="tasks">
+        <span v-for="(task, index) in getProjectTasks()" :key="index">
+          <span class="text-highlight-2">✓</span> {{ task }}<br/>
+        </span>
+      </p>
+    </div>
+  </div>
 </template>
+
 
 <style scoped>
     .project {
@@ -209,12 +175,12 @@
         order: 1;
     }
 
-    .fade-in {
+   /* .fade-in {
         opacity: 0;
         transition: 0.3s all ease-out;
         transform: scale(0.8);
         display: inline-block;
-    }
+    }*/
 
     /* Styles du carousel */
     .carousel-container {

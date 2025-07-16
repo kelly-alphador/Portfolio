@@ -4,9 +4,17 @@
 
 <template>
     <section id="skills" class="section">
-        <h2 class="text-highlight-1 section-title">Mes technos préférées</h2>
+        <h2 class="text-highlight-1 section-title" 
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="300"
+            >Mes technos préférées</h2>
         
-        <div class="carousel-container">
+        <div class="carousel-container"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="300"
+        >
             <div class="carousel-track">
                 <!-- Premier set d'icônes -->
                 <div class="techno-container"><i class="techno-icon devicon-html5-plain"></i> <br/> <span>HTML</span></div>
